@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_social_ui/widgets/curve_clipper.dart';
+
+import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -14,11 +17,14 @@ class _LoginScreenState extends State<LoginScreen> {
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
-              Image(
-                height: MediaQuery.of(context).size.height / 2.5,
-                fit: BoxFit.cover, // чтобы картинка покрывала верх экрана
-                width: double.infinity,
-                image: AssetImage('assets/images/login_background.jpg'),
+              ClipPath(
+                clipper: CurveClipper(),
+                child: Image(
+                  height: MediaQuery.of(context).size.height / 2.5,
+                  fit: BoxFit.cover, // чтобы картинка покрывала верх экрана
+                  width: double.infinity,
+                  image: AssetImage('assets/images/login_background.jpg'),
+                ),
               ),
               Text(
                 'FRENZY',
@@ -26,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: Theme.of(context).primaryColor,
                   fontSize: 34,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 1.0,
+                  letterSpacing: 10.0,
                 ),
               ),
               SizedBox(height: 10),
@@ -66,7 +72,11 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 10),
               GestureDetector(
-                onTap: () {},
+                onTap: () => Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (_) => HomeScreen(),
+                  ),
+                ),
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 60),
                   alignment: Alignment
